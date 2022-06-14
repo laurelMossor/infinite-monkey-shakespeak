@@ -9,20 +9,36 @@
 # If the letters are not correct then we will generate a whole new string.To make it easier to follow your program’s progress 
 # this third function should print out the best string generated so far and its score every 1000 tries.
 
+from random import choice
+
+ALPHABET_SPACE = "abcdefghijklmnopqrstuvwxyz "
+
+def alphabet_list(ALPHABET_SPACE):
+    return list(ALPHABET_SPACE)
+
+ALPHABET_LIST = alphabet_list(ALPHABET_SPACE)
 
 def get_phrase():
-    """Asks for user input string and returns a length"""
-    monkey_string = input("What phrase would you like the monkey to generate?\n>").lower()
-    print(f"You put '{monkey_string}'... on it!")
-    return len(monkey_string)
+    """Asks for user input string 
+    and returns a length"""
 
+    human_string = input("What phrase would you like the monkey to generate?\n>").lower()
+    print(f"You put '{human_string}'... on it!")
 
-def generate_string(input):
+    return len(human_string)
+
+def generate_string(length):
     """Generate a string that is as long as intended phrase"""
-    print(input)
+
+    monkey_string = ""
+    for i in range(length):
+        monkey_string += choice(ALPHABET_LIST)
+    
+    print(monkey_string)
 
 def MAIN():
-    generate_string(get_phrase())
+    monkey_string_length = get_phrase()
+    generate_string(monkey_string_length)
 
 
 MAIN()
